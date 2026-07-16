@@ -1,26 +1,76 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+
+interface Book {
+  title: string;
+  description: string;
+  score: number;
+}
 
 @Component({
   selector: 'app-book-list',
   standalone: true,
-  imports: [CommonModule],
+  imports: [
+    CommonModule,
+    FormsModule,
+    MatToolbarModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+  ],
   templateUrl: './book-list.html',
-  styleUrls: ['./book-list.css']
+  styleUrl: './book-list.css',
 })
 export class BookListComponent {
-  books = [
+
+  title = '';
+  description = '';
+  score: number | null = null;
+
+  books: Book[] = [
     {
-      title: 'name',
-      description: 'detail'
+      title: 'アンドロイドは電気羊の夢を見るか?',
+      description: '第三次世界大戦後の未来を描いたSF小説。',
+      score: 90,
     },
     {
-      title: '坊ちゃん',
-      description: '親譲りの無鉄砲で小供の時から損ばかりしている。小学校に居る時分学校の二階から飛び降りて一週間ほど腰を抜かした事がある。'
-    }
+      title: '岩田さん',
+      description: '任天堂の岩田聡さんの仕事哲学をまとめた本。',
+      score: 90,
+    },
   ];
 
-  deleteBook(index: number) {
+  addBook(): void {
+
+    if (
+      !this.title.trim() ||
+      !this.description.trim() ||
+      this.score === null
+    ) {
+      return;
+    }
+
+    this.books.unshift({
+      title: this.title,
+      description: this.description,
+      score: this.score,
+    });
+
+    this.title = '';
+    this.description = '';
+    this.score = null;
+  }
+
+  deleteBook(index: number): void {
     this.books.splice(index, 1);
   }
+
 }

@@ -1,5 +1,5 @@
 .container {
-  width: 700px;
+  width: 1000px;
   margin: 30px auto;
 }
 
@@ -11,16 +11,51 @@ mat-toolbar {
   margin-bottom: 20px;
 }
 
+.form-card {
+  margin-bottom: 28px;
+}
+
 mat-card {
-  margin-bottom: 20px;
-  padding: 16px;
+  margin-bottom: 18px;
+}
+
+mat-card-content {
+  padding-bottom: 10px;
 }
 
 mat-form-field {
-  width: 100%;
+  width: 450px;
+  display: block;
+  margin-bottom: 12px;
 }
 
-.button-area {
+textarea {
+  resize: none;
+}
+
+mat-card-actions {
   display: flex;
   justify-content: flex-end;
+  padding: 0 16px 16px;
+}
+
+.book-title {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.book-description {
+  margin-top: 10px;
+  line-height: 1.6;
+}
+
+.delete-button {
+  background: #f44336 !important;
+  color: white !important;
+}
+
+.logs {
+  margin-top: 12px;
+  font-size: 14px;
+  line-height: 1.8;
 }
