@@ -48,6 +48,12 @@ export class BookListComponent {
     },
   ];
 
+  logs: string[] = [
+    '坊ちゃんを追加しました',
+    '徒然草を削除しました',
+    '徒然草を参照しました',
+  ];
+
   addBook(): void {
 
     if (
@@ -64,13 +70,20 @@ export class BookListComponent {
       score: this.score,
     });
 
+    this.logs.unshift(`${this.title}を追加しました`);
+
     this.title = '';
     this.description = '';
     this.score = null;
   }
 
   deleteBook(index: number): void {
+
+    const deleted = this.books[index];
+
     this.books.splice(index, 1);
+
+    this.logs.unshift(`${deleted.title}を削除しました`);
   }
 
 }

@@ -1,10 +1,10 @@
-<div class="container">
+<mat-toolbar color="primary">
+  <span>読んだ本</span>
+  <span class="spacer"></span>
+  <span>一覧</span>
+</mat-toolbar>
 
-  <mat-toolbar color="primary">
-    <span>読んだ本</span>
-    <span class="spacer"></span>
-    <span>一覧</span>
-  </mat-toolbar>
+<div class="container">
 
   <mat-card class="form-card">
 
@@ -26,13 +26,6 @@
           placeholder="あらすじ"
           [(ngModel)]="description">
         </textarea>
-      </mat-form-field>
-
-      <mat-form-field appearance="outline">
-        <input
-          matInput
-          placeholder="評価点"
-          [(ngModel)]="score">
       </mat-form-field>
 
     </mat-card-content>
@@ -62,10 +55,6 @@
           {{ book.description }}
         </div>
 
-        <div class="book-score">
-          評価: {{ book.score }}点
-        </div>
-
       </mat-card-content>
 
       <mat-card-actions>
@@ -80,5 +69,11 @@
     </mat-card>
 
   }
+
+  <div class="logs">
+    @for (log of logs; track $index) {
+      <div>{{ log }}</div>
+    }
+  </div>
 
 </div>
