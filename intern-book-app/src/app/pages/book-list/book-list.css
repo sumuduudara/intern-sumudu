@@ -1,26 +1,47 @@
 .container {
-  width: 700px;
-  margin: 30px auto;
+  margin: 30px;
 }
 
 .spacer {
   flex: 1 1 auto;
 }
 
-mat-toolbar {
-  margin-bottom: 20px;
-}
-
-mat-card {
-  margin-bottom: 20px;
-  padding: 16px;
+.form-card {
+  width: 320px;
+  margin-bottom: 24px;
 }
 
 mat-form-field {
   width: 100%;
+  margin-bottom: 12px;
 }
 
-.button-area {
+textarea {
+  resize: none;
+}
+
+mat-card-actions {
   display: flex;
   justify-content: flex-end;
+  padding: 8px 16px 16px;
+}
+
+.book-card {
+  margin-bottom: 20px;
+}
+
+.book-title {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.book-description {
+  margin-top: 12px;
+  line-height: 1.6;
+}
+
+.logs {
+  margin-top: 20px;
+  font-size: 14px;
+  line-height: 1.8;
 }

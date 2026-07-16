@@ -1,40 +1,87 @@
-<div style="max-width: 500px; margin: 0 auto; border: 1px solid #ccc; font-family: sans-serif; background-color: #fff;">
-  
-  <div style="background-color: #3f51b5; color: white; padding: 10px 15px; display: flex; justify-content: space-between; align-items: center; font-weight: bold;">
-    <span>読んだ本</span>
-    <span>一覧</span>
-  </div>
+<mat-toolbar color="primary">
+  <span>読んだ本</span>
+  <span class="spacer"></span>
+  <span>一覧</span>
+</mat-toolbar>
 
-  <div style="padding: 20px;">
-    
-    <div style="border: 1px solid #777; padding: 20px; margin-bottom: 30px; width: 60%; max-width: 250px;">
-      <div style="margin-bottom: 15px;">
-        <input type="text" placeholder="input" style="width: 100%; padding: 8px; border: 1px solid #777; box-sizing: border-box;">
-      </div>
-      <div style="margin-bottom: 15px;">
-        <textarea placeholder="textarea" rows="3" style="width: 100%; padding: 8px; border: 1px solid #777; box-sizing: border-box; resize: none;"></textarea>
-      </div>
-      <div style="text-align: right;">
-        <button style="background-color: #3f51b5; color: white; border: none; padding: 8px 15px; cursor: pointer; font-weight: bold;">追加</button>
-      </div>
-    </div>
+<div class="container">
 
-    @for (book of books; track book.title; let i = $index) {
-      <div style="border: 1px solid #777; padding: 20px; margin-bottom: 20px;">
-        <h3 style="margin: 0 0 10px 0; font-size: 1.2em; font-weight: normal;">{{ book.title }}</h3>
-        <p style="margin: 0; color: #333; font-size: 0.95em; line-height: 1.5;">{{ book.description }}</p>
-        
-        <div style="text-align: right; margin-top: 10px;">
-          <span (click)="deleteBook(i)" style="color: #ff4081; cursor: pointer; font-weight: bold; font-size: 0.9em;">削除</span>
+  <mat-card class="form-card">
+
+    <mat-card-content>
+
+      <h2>書籍登録</h2>
+
+      <mat-form-field appearance="outline">
+        <input
+          matInput
+          placeholder="書籍名"
+          [(ngModel)]="title">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <textarea
+          matInput
+          rows="3"
+          placeholder="あらすじ"
+          [(ngModel)]="description">
+        </textarea>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <input
+          matInput
+          type="number"
+          placeholder="評価点"
+          [(ngModel)]="score">
+      </mat-form-field>
+
+    </mat-card-content>
+
+    <mat-card-actions>
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="addBook()">
+        追加
+      </button>
+    </mat-card-actions>
+
+  </mat-card>
+
+  @for (book of books; track book.title; let i = $index) {
+
+    <mat-card class="book-card">
+
+      <mat-card-content>
+
+        <div class="book-title">
+          {{ book.title }}
         </div>
-      </div>
+
+        <div class="book-description">
+          {{ book.description }}
+        </div>
+
+      </mat-card-content>
+
+      <mat-card-actions>
+        <button
+          mat-raised-button
+          color="warn"
+          (click)="deleteBook(i)">
+          削除
+        </button>
+      </mat-card-actions>
+
+    </mat-card>
+
+  }
+
+  <div class="logs">
+    @for (log of logs; track $index) {
+      <div>{{ log }}</div>
     }
-
-    <div style="margin-top: 30px; font-size: 0.9em; line-height: 1.6; color: #111;">
-      <div>坊ちゃんを追加しました</div>
-      <div>徒然草を削除しました</div>
-      <div>徒然草を参照しました</div>
-    </div>
-
   </div>
+
 </div>
