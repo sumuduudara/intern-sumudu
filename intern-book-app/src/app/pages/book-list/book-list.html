@@ -1,77 +1,42 @@
-
-
 <div class="container">
-
   <mat-card class="form-card">
-
     <mat-card-content>
-
       <h2>書籍登録</h2>
 
       <mat-form-field appearance="outline">
-        <input
-          matInput
-          placeholder="書籍名"
-          [(ngModel)]="title">
+        <input matInput placeholder="書籍名" [(ngModel)]="title" />
       </mat-form-field>
 
       <mat-form-field appearance="outline">
-        <textarea
-          matInput
-          rows="3"
-          placeholder="あらすじ"
-          [(ngModel)]="description">
-        </textarea>
+        <textarea matInput rows="3" placeholder="あらすじ" [(ngModel)]="description"> </textarea>
       </mat-form-field>
 
       <mat-form-field appearance="outline">
-        <input
-          matInput
-          type="number"
-          placeholder="評価点"
-          [(ngModel)]="score">
+        <input matInput type="number" placeholder="評価点" [(ngModel)]="score" />
       </mat-form-field>
-
     </mat-card-content>
 
     <mat-card-actions>
-      <button
-        mat-raised-button
-        color="primary"
-        (click)="addBook()">
-        追加
-      </button>
+      <button mat-raised-button color="primary" (click)="addBook()">追加</button>
     </mat-card-actions>
-
   </mat-card>
 
-  @for (book of books; track book.title; let i = $index) {
-
+  @for (book of bookList; track book.name; let i = $index) {
     <mat-card class="book-card">
-
       <mat-card-content>
-
         <div class="book-title">
-          {{ book.title }}
+          {{ book.name }}
         </div>
 
         <div class="book-description">
-          {{ book.description }}
+          {{ book.detail }}
         </div>
-
       </mat-card-content>
 
       <mat-card-actions>
-        <button
-          mat-raised-button
-          color="warn"
-          (click)="deleteBook(i)">
-          削除
-        </button>
+        <button mat-raised-button color="warn" (click)="deleteBook(i)">削除</button>
       </mat-card-actions>
-
     </mat-card>
-
   }
 
   <div class="logs">
@@ -79,5 +44,4 @@
       <div>{{ log }}</div>
     }
   </div>
-
 </div>

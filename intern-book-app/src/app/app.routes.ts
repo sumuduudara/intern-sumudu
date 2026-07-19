@@ -6,4 +6,4 @@ export const routes: Routes = [
     path: '',
     component: BookListComponent,
   },
-]
+];
