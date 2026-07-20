@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Book } from '../../types/book.interface';
+import { BookCard } from '../../components/book-card/book-card';
 
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCardModule } from '@angular/material/card';
@@ -20,6 +21,7 @@ import { MatButtonModule } from '@angular/material/button';
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
+    BookCard,
   ],
   templateUrl: './book-list.html',
   styleUrl: './book-list.css',

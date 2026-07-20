@@ -21,22 +21,8 @@
     </mat-card-actions>
   </mat-card>
 
-  @for (book of bookList; track book.name; let i = $index) {
-    <mat-card class="book-card">
-      <mat-card-content>
-        <div class="book-title">
-          {{ book.name }}
-        </div>
-
-        <div class="book-description">
-          {{ book.detail }}
-        </div>
-      </mat-card-content>
-
-      <mat-card-actions>
-        <button mat-raised-button color="warn" (click)="deleteBook(i)">削除</button>
-      </mat-card-actions>
-    </mat-card>
+  @for (book of bookList; track book.name) {
+    <app-book-card [book]="book"></app-book-card>
   }
 
   <div class="logs">
