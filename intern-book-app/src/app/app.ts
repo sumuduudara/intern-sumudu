@@ -5,7 +5,7 @@ import { Toolbar } from './components/toolbar/toolbar';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet,Toolbar],
+  imports: [RouterOutlet, Toolbar],
   templateUrl: './app.html',
   styleUrl: './app.css',
 })
