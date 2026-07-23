@@ -22,9 +22,8 @@
   </mat-card>
 
   @for (book of bookList; track book.name) {
-    <app-book-card [book]="book"></app-book-card>
+    <app-book-card [book]="book" (delete)="deleteBook($index)"> </app-book-card>
   }
-
   <div class="logs">
     @for (log of logs; track $index) {
       <div>{{ log }}</div>
