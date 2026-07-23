@@ -21,9 +21,16 @@
     </mat-card-actions>
   </mat-card>
 
-  @for (book of bookList; track book.name) {
-    <app-book-card [book]="book" (delete)="deleteBook($index)"> </app-book-card>
-  }
+  <div *ngIf="bookList.length > 0; else noData">
+    @for (book of bookList; track book.name) {
+      <app-book-card [book]="book" (delete)="deleteBook($index)"> </app-book-card>
+    }
+  </div>
+
+  <ng-template #noData>
+    <p>データがありません</p>
+  </ng-template>
+
   <div class="logs">
     @for (log of logs; track $index) {
       <div>{{ log }}</div>
