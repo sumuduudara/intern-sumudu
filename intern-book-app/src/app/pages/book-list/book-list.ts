@@ -9,6 +9,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { ConfirmDialog } from '../../components/confirm-dialog/confirm-dialog';
 
 @Component({
   selector: 'app-book-list',
@@ -21,6 +23,7 @@ import { MatButtonModule } from '@angular/material/button';
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
+    MatDialogModule,
     BookCard,
   ],
   templateUrl: './book-list.html',
@@ -30,6 +33,7 @@ export class BookListComponent {
   title = '';
   description = '';
   score: number | null = null;
+  constructor(private dialog: MatDialog) {}
 
   bookList: Book[] = [
     {
@@ -65,10 +69,16 @@ export class BookListComponent {
   }
 
   deleteBook(index: number): void {
-    const deleted = this.bookList[index];
+    const dialogRef = this.dialog.open(ConfirmDialog);
 
-    this.bookList.splice(index, 1);
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        const deleted = this.bookList[index];
 
-    this.logs.unshift(`${deleted.name}を削除しました`);
+        this.bookList.splice(index, 1);
+
+        this.logs.unshift(`${deleted.name}を削除しました`);
+      }
+    });
   }
 }
