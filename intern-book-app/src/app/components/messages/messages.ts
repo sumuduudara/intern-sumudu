@@ -6,10 +6,14 @@ import { MatButtonModule } from '@angular/material/button';
 @Component({
   selector: 'app-messages',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, MatButtonModule],
   templateUrl: './messages.html',
   styleUrl: './messages.css',
 })
 export class MessagesComponent {
   constructor(public messageService: MessageService) {}
+
+  get messages(): string[] {
+    return this.messageService.messages;
+  }
 }
