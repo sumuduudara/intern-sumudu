@@ -12,8 +12,4 @@ import { MatButtonModule } from '@angular/material/button';
 })
 export class MessagesComponent {
   constructor(public messageService: MessageService) {}
-
-  get messages(): string[] {
-    return this.messageService.messages;
-  }
 }

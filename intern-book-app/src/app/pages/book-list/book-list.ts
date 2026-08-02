@@ -29,6 +29,7 @@ import { ConfirmDialog } from '../../components/confirm-dialog/confirm-dialog';
     BookCard,
     MessagesComponent,
   ],
+
   templateUrl: './book-list.html',
   styleUrl: './book-list.css',
 })
@@ -87,8 +88,6 @@ export class BookListComponent {
         console.log('Deleting:', deleted);
 
         this.bookList.splice(index, 1);
-
-        this.messageService.add(`${deleted.name}を削除しました`);
 
         console.log(this.messageService.messages);
       }

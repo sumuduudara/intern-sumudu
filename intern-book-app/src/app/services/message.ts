@@ -1,18 +1,23 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class MessageService {
-  messages: string[] = [];
+  private messagesSubject = new BehaviorSubject<string[]>([]);
+  messages$ = this.messagesSubject.asObservable();
 
   add(message: string): void {
-    console.log('ADD:', message);
-    this.messages.unshift(message);
-    console.log(this.messages);
+    const current = this.messagesSubject.value;
+    this.messagesSubject.next([message, ...current]);
   }
 
   clear(): void {
-    this.messages = [];
+    this.messagesSubject.next([]);
+  }
+
+  get messages(): string[] {
+    return this.messagesSubject.value;
   }
 }

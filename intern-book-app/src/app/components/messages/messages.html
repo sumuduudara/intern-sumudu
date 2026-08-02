@@ -1,21 +1,16 @@
-<div class="messages-container">
+<div class="messages-container" *ngIf="messageService.messages$ | async as msgs">
   <h3>Operation Log</h3>
 
-  <button
-    mat-button
-    color="warn"
-    [disabled]="messages.length === 0"
-    (click)="messageService.clear()"
-  >
+  <button mat-button color="warn" [disabled]="msgs.length === 0" (click)="messageService.clear()">
     Clear
   </button>
 
-  <div *ngIf="messages.length === 0">
+  <div *ngIf="msgs.length === 0">
     <p>No operation logs.</p>
   </div>
 
-  <ul *ngIf="messages.length > 0">
-    <li *ngFor="let message of messages">
+  <ul *ngIf="msgs.length > 0">
+    <li *ngFor="let message of msgs">
       {{ message }}
     </li>
   </ul>

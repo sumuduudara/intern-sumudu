@@ -8,7 +8,7 @@
       </mat-form-field>
 
       <mat-form-field appearance="outline">
-        <textarea matInput rows="3" placeholder="あらすじ" [(ngModel)]="description"> </textarea>
+        <textarea matInput rows="3" placeholder="あらすじ" [(ngModel)]="description"></textarea>
       </mat-form-field>
 
       <mat-form-field appearance="outline">
@@ -22,8 +22,8 @@
   </mat-card>
 
   <div *ngIf="bookList.length > 0; else noData">
-    @for (book of bookList; track book.name) {
-      <app-book-card [book]="book" (delete)="deleteBook($index)"> </app-book-card>
+    @for (book of bookList; track book.name; let index = $index) {
+      <app-book-card [book]="book" (delete)="deleteBook(index)"></app-book-card>
     }
   </div>
 
