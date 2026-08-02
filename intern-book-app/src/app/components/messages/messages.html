@@ -1,9 +1,22 @@
-<div *ngIf="messages.length">
+<div class="messages-container">
   <h3>Operation Log</h3>
 
-  <button mat-button (click)="messageService.clear()">Clear</button>
+  <button
+    mat-button
+    color="warn"
+    [disabled]="messages.length === 0"
+    (click)="messageService.clear()"
+  >
+    Clear
+  </button>
 
-  <div *ngFor="let message of messages">
-    {{ message }}
+  <div *ngIf="messages.length === 0">
+    <p>No operation logs.</p>
   </div>
+
+  <ul *ngIf="messages.length > 0">
+    <li *ngFor="let message of messages">
+      {{ message }}
+    </li>
+  </ul>
 </div>
