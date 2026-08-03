@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Book } from '../../types/book.interface';
 import { BookCard } from '../../components/book-card/book-card';
+import { MessageService } from '../../services/message';
+import { MessagesComponent } from '../../components/messages/messages';
 
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCardModule } from '@angular/material/card';
@@ -25,7 +27,9 @@ import { ConfirmDialog } from '../../components/confirm-dialog/confirm-dialog';
     MatButtonModule,
     MatDialogModule,
     BookCard,
+    MessagesComponent,
   ],
+
   templateUrl: './book-list.html',
   styleUrl: './book-list.css',
 })
@@ -33,7 +37,10 @@ export class BookListComponent {
   title = '';
   description = '';
   score: number | null = null;
-  constructor(private dialog: MatDialog) {}
+  constructor(
+    private dialog: MatDialog,
+    public messageService: MessageService,
+  ) {}
 
   bookList: Book[] = [
     {
@@ -48,8 +55,6 @@ export class BookListComponent {
     },
   ];
 
-  logs: string[] = ['坊ちゃんを追加しました', '徒然草を削除しました', '徒然草を参照しました'];
-
   addBook(): void {
     if (!this.title.trim() || !this.description.trim() || this.score === null) {
       return;
@@ -61,7 +66,7 @@ export class BookListComponent {
       evaluation: this.score,
     });
 
-    this.logs.unshift(`${this.title}を追加しました`);
+    this.messageService.add(`${this.title}を追加しました`);
 
     this.title = '';
     this.description = '';
@@ -73,11 +78,7 @@ export class BookListComponent {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        const deleted = this.bookList[index];
-
         this.bookList.splice(index, 1);
-
-        this.logs.unshift(`${deleted.name}を削除しました`);
       }
     });
   }

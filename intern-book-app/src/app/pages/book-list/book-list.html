@@ -8,7 +8,7 @@
       </mat-form-field>
 
       <mat-form-field appearance="outline">
-        <textarea matInput rows="3" placeholder="あらすじ" [(ngModel)]="description"> </textarea>
+        <textarea matInput rows="3" placeholder="あらすじ" [(ngModel)]="description"></textarea>
       </mat-form-field>
 
       <mat-form-field appearance="outline">
@@ -17,13 +17,13 @@
     </mat-card-content>
 
     <mat-card-actions>
-      <button mat-raised-button color="primary" (click)="addBook()">追加</button>
+      <button mat-raised-button color="primary" type="button" (click)="addBook()">追加</button>
     </mat-card-actions>
   </mat-card>
 
   <div *ngIf="bookList.length > 0; else noData">
-    @for (book of bookList; track book.name) {
-      <app-book-card [book]="book" (delete)="deleteBook($index)"> </app-book-card>
+    @for (book of bookList; track book.name; let index = $index) {
+      <app-book-card [book]="book" (delete)="deleteBook(index)"></app-book-card>
     }
   </div>
 
@@ -31,9 +31,5 @@
     <p>データがありません</p>
   </ng-template>
 
-  <div class="logs">
-    @for (log of logs; track $index) {
-      <div>{{ log }}</div>
-    }
-  </div>
+  <app-messages></app-messages>
 </div>
