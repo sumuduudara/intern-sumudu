@@ -67,7 +67,6 @@ export class BookListComponent {
     });
 
     this.messageService.add(`${this.title}を追加しました`);
-    console.log('Messages:', this.messageService.messages);
 
     this.title = '';
     this.description = '';
@@ -75,21 +74,11 @@ export class BookListComponent {
   }
 
   deleteBook(index: number): void {
-    console.log('Delete clicked');
-
     const dialogRef = this.dialog.open(ConfirmDialog);
 
     dialogRef.afterClosed().subscribe((result) => {
-      console.log('Dialog result:', result);
-
       if (result) {
-        const deleted = this.bookList[index];
-
-        console.log('Deleting:', deleted);
-
         this.bookList.splice(index, 1);
-
-        console.log(this.messageService.messages);
       }
     });
   }
