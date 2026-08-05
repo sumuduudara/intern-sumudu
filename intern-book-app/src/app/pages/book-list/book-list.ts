@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, NgZone } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Book } from '../../types/book.interface';
@@ -40,6 +40,7 @@ export class BookListComponent {
   constructor(
     private dialog: MatDialog,
     public messageService: MessageService,
+    private ngZone: NgZone,
   ) {}
 
   bookList: Book[] = [
@@ -76,9 +77,13 @@ export class BookListComponent {
   deleteBook(index: number): void {
     const dialogRef = this.dialog.open(ConfirmDialog);
 
-    dialogRef.afterClosed().subscribe((result) => {
+    dialogRef.afterClosed().subscribe((result: boolean) => {
       if (result) {
-        this.bookList.splice(index, 1);
+        this.ngZone.run(() => {
+          const deletedBook = this.bookList[index];
+          this.bookList.splice(index, 1);
+          this.messageService.add(`${deletedBook.name}を削除しました`);
+        });
       }
     });
   }
