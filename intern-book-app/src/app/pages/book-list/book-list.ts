@@ -77,8 +77,8 @@ export class BookListComponent {
   deleteBook(index: number): void {
     const dialogRef = this.dialog.open(ConfirmDialog);
 
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result === true) {
+    dialogRef.afterClosed().subscribe((result: boolean) => {
+      if (result) {
         this.ngZone.run(() => {
           const deletedBook = this.bookList[index];
           this.bookList.splice(index, 1);
