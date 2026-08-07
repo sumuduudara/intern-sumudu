@@ -1,3 +1,6 @@
 .book-description {
   white-space: pre-wrap;
 }
+.book-card {
+  margin-bottom: 16px;
+}
