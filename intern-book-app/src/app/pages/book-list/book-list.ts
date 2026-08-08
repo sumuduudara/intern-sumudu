@@ -46,12 +46,12 @@ export class BookListComponent {
   bookList: Book[] = [
     {
       title: 'アンドロイドは電気羊の夢を見るか?',
-      detail: '第三次世界大戦後の未来を描いたSF小説。',
+      description: '第三次世界大戦後の未来を描いたSF小説。',
       evaluation: 90,
     },
     {
       title: '岩田さん',
-      detail: '任天堂の岩田聡さんの仕事哲学をまとめた本。',
+      description: '任天堂の岩田聡さんの仕事哲学をまとめた本。',
       evaluation: 90,
     },
   ];
@@ -63,7 +63,7 @@ export class BookListComponent {
 
     this.bookList.unshift({
       title: this.title,
-      detail: this.description,
+      description: this.description,
       evaluation: this.evaluation,
     });
 
