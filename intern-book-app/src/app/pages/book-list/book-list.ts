@@ -36,7 +36,7 @@ import { ConfirmDialog } from '../../components/confirm-dialog/confirm-dialog';
 export class BookListComponent {
   title = '';
   description = '';
-  score: number | null = null;
+  evaluation: number | null = null;
   constructor(
     private dialog: MatDialog,
     public messageService: MessageService,
@@ -45,33 +45,33 @@ export class BookListComponent {
 
   bookList: Book[] = [
     {
-      name: 'アンドロイドは電気羊の夢を見るか?',
-      detail: '第三次世界大戦後の未来を描いたSF小説。',
+      title: 'アンドロイドは電気羊の夢を見るか?',
+      description: '第三次世界大戦後の未来を描いたSF小説。',
       evaluation: 90,
     },
     {
-      name: '岩田さん',
-      detail: '任天堂の岩田聡さんの仕事哲学をまとめた本。',
+      title: '岩田さん',
+      description: '任天堂の岩田聡さんの仕事哲学をまとめた本。',
       evaluation: 90,
     },
   ];
 
   addBook(): void {
-    if (!this.title.trim() || !this.description.trim() || this.score === null) {
+    if (!this.title.trim() || !this.description.trim() || this.evaluation === null) {
       return;
     }
 
     this.bookList.unshift({
-      name: this.title,
-      detail: this.description,
-      evaluation: this.score,
+      title: this.title,
+      description: this.description,
+      evaluation: this.evaluation,
     });
 
     this.messageService.add(`${this.title}を追加しました`);
 
     this.title = '';
     this.description = '';
-    this.score = null;
+    this.evaluation = null;
   }
 
   deleteBook(index: number): void {
@@ -82,7 +82,7 @@ export class BookListComponent {
         this.ngZone.run(() => {
           const deletedBook = this.bookList[index];
           this.bookList.splice(index, 1);
-          this.messageService.add(`${deletedBook.name}を削除しました`);
+          this.messageService.add(`${deletedBook.title}を削除しました`);
         });
       }
     });

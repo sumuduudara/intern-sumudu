@@ -1,5 +1,5 @@
 export interface Book {
-  name: string;
-  detail: string;
+  title: string;
+  description: string;
   evaluation: number;
 }
