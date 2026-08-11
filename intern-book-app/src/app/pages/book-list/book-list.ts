@@ -1,6 +1,6 @@
 import { Component, NgZone } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 import { Book } from '../../types/book.interface';
 import { BookCard } from '../../components/book-card/book-card';
 import { MessageService } from '../../services/message';
@@ -56,18 +56,19 @@ export class BookListComponent {
     },
   ];
 
-  addBook(): void {
-    if (!this.title.trim() || !this.description.trim() || this.evaluation === null) {
+  addBook(form: NgForm): void {
+    if (form.invalid) {
       return;
     }
 
     this.bookList.unshift({
       title: this.title,
       description: this.description,
-      evaluation: this.evaluation,
+      evaluation: this.evaluation!,
     });
 
     this.messageService.add(`${this.title}を追加しました`);
+    form.resetForm();
 
     this.title = '';
     this.description = '';

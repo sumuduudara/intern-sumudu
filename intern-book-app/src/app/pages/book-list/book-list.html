@@ -3,22 +3,68 @@
     <mat-card-content>
       <h2>書籍登録</h2>
 
-      <mat-form-field appearance="outline">
-        <input matInput placeholder="書籍名" [(ngModel)]="title" />
-      </mat-form-field>
+      <form #bookForm="ngForm" (ngSubmit)="addBook(bookForm)">
+        <mat-form-field appearance="outline">
+          <input
+            matInput
+            name="title"
+            placeholder="書籍名"
+            [(ngModel)]="title"
+            required
+            #titleInput="ngModel"
+          />
+          <mat-error
+            *ngIf="
+              titleInput.invalid && (titleInput.dirty || titleInput.touched || bookForm.submitted)
+            "
+          >
+            書籍名は必須項目です。
+          </mat-error>
+        </mat-form-field>
 
-      <mat-form-field appearance="outline">
-        <textarea matInput rows="3" placeholder="あらすじ" [(ngModel)]="description"></textarea>
-      </mat-form-field>
+        <mat-form-field appearance="outline">
+          <textarea
+            matInput
+            name="description"
+            rows="3"
+            placeholder="あらすじ"
+            [(ngModel)]="description"
+            required
+            #descInput="ngModel"
+          ></textarea>
+          <mat-error
+            *ngIf="
+              descInput.invalid && (descInput.dirty || descInput.touched || bookForm.submitted)
+            "
+          >
+            あらすじは必須項目です。
+          </mat-error>
+        </mat-form-field>
 
-      <mat-form-field appearance="outline">
-        <input matInput type="number" placeholder="評価点" [(ngModel)]="evaluation" />
-      </mat-form-field>
+        <mat-form-field appearance="outline">
+          <input
+            matInput
+            type="number"
+            name="evaluation"
+            placeholder="評価点"
+            [(ngModel)]="evaluation"
+            required
+            #evalInput="ngModel"
+          />
+          <mat-error
+            *ngIf="
+              evalInput.invalid && (evalInput.dirty || evalInput.touched || bookForm.submitted)
+            "
+          >
+            評価点は必須項目です。
+          </mat-error>
+        </mat-form-field>
+
+        <mat-card-actions>
+          <button mat-raised-button color="primary" type="submit">追加</button>
+        </mat-card-actions>
+      </form>
     </mat-card-content>
-
-    <mat-card-actions>
-      <button mat-raised-button color="primary" type="button" (click)="addBook()">追加</button>
-    </mat-card-actions>
   </mat-card>
 
   <div *ngIf="bookList.length > 0; else noData">
